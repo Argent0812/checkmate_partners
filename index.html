@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkmate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="./assets/icons/checkmateLogo.svg" class="checkmate-logo">
+    <div class="pdf-grid">
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/AlphaGym_BrandIdentity.pdf"><img src="./assets/images/AlphaGym_BrandIdentity.jpg"><p>Alpha Gym</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/ARGTADAYS_Brand.pdf"><img src="./assets/images/ARGTADAYS_Brand.jpg"><p>ARGATADAYS</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Box_Brand.pdf"><img src="./assets/images/Box_Brand.jpg"><p>Box Brand</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Bring_Brand.pdf"><img src="./assets/images/Bring_Brand.jpg"><p>Bring Brand</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/ElmedinaLashes_Brand.pdf"><img src="./assets/images/ElmedinaLashes_Brand.jpg"><p>Elmedina Lashes</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Fate_Brand_Identity.pdf"><img src="./assets/images/Fate_Brand_Identity.jpg"><p>Fate Brand Identity</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Flyworld_CompanyPorfile.pdf"><img src="./assets/images/Flyworld_CompanyPorfile.jpg"><p>Flyworld Company</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/FutureSkillsCenter_BrandIdentity.pdf"><img src="./assets/images/FutureSkillsCenter_BrandIdentity.jpg"><p>Future Skills Center</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/GrandSolar_Brand.pdf"><img src="./assets/images/GrandSolar_Brand.jpg"><p>Grand Solar Brand</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Hellga_Brand.pdf"><img src="./assets/images/Hellga_Brand.jpg"><p>Hellga Brand</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Hygiot_Brand.pdf"><img src="./assets/images/Hygiot_Brand.jpg"><p>Hygiot Brand</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/KerraGroup_Logo.pdf"><img src="./assets/images/KerraGroup_Logo.jpg"><p>Kerra Group</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/KidsLand_Brand.pdf"><img src="./assets/images/KidsLand_Brand.jpg"><p>Kids Land</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Milestoned_Brand.pdf"><img src="./assets/images/Milestoned_Brand.jpg"><p>Mile Stoned</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Numbers Academy Logo (1).pdf"><img src="./assets/images/Numbers Academy Logo (1).jpg"><p>Numbers Academy</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Trip_Brand.pdf"><img src="./assets/images/Trip_Brand.jpg"><p>Trip Brand</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/USNAFS_Brand.pdf"><img src="./assets/images/USNAFS_Brand.jpg"><p>USNAFS</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Vendi_Brand.pdf"><img src="./assets/images/Vendi_Brand.jpg"><p>Vendi Brand</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/Yizz_Brand_Identity.pdf"><img src="./assets/images/Yizz_Brand_Identity.jpg"><p>Yizz Brand Identity</p></a></div>
+    </div>
+
+    <!-- PDF Preview Modal -->
+    <div id="pdf-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="pdf-frame" src="" width="100%" height="500px"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Get modal elements
+        const modal = document.getElementById("pdf-modal");
+        const pdfFrame = document.getElementById("pdf-frame");
+        const closeModal = document.getElementsByClassName("close")[0];
+
+        // Add click event listeners to all PDF links
+        const pdfLinks = document.querySelectorAll(".pdf-card a");
+        pdfLinks.forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent the default anchor behavior
+                const pdfSrc = this.getAttribute("data-pdf"); // Get the PDF source from the data attribute
+                pdfFrame.src = pdfSrc; // Set the iframe source to the PDF
+                modal.style.display = "block"; // Show the modal
+            });
+        });
+
+        // Close the modal when the close button is clicked
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+            pdfFrame.src = ""; // Reset the iframe source
+        }
+
+        // Close the modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                pdfFrame.src = ""; // Reset the iframe source
+            }
+        }
+    </script>
+</body>
+</html>
