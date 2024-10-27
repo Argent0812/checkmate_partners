@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <img src="assets/icons/checkmateLogo.svg" class="checkmate-logo">
+    <img src="/assets/icons/checkmateLogo.svg" class="checkmate-logo">
     <div class="pdf-grid">
-        <div class="pdf-card"><a href="#" data-pdf="pdfs/AlphaGym_BrandIdentity.pdf"><img src="assets/images/AlphaGym_BrandIdentity.jpg"><p>Alpha Gym</p></a></div>
+        <div class="pdf-card"><a href="#" data-pdf="./pdfs/AlphaGym_BrandIdentity.pdf"><img src="./assets/images/AlphaGym_BrandIdentity.jpg"><p>Alpha Gym</p></a></div>
         <div class="pdf-card"><a href="#" data-pdf="./pdfs/ARGTADAYS_Brand.pdf"><img src="./assets/images/ARGTADAYS_Brand.jpg"><p>ARGATADAYS</p></a></div>
         <div class="pdf-card"><a href="#" data-pdf="./pdfs/Box_Brand.pdf"><img src="./assets/images/Box_Brand.jpg"><p>Box Brand</p></a></div>
         <div class="pdf-card"><a href="#" data-pdf="./pdfs/Bring_Brand.pdf"><img src="./assets/images/Bring_Brand.jpg"><p>Bring Brand</p></a></div>
@@ -43,24 +43,30 @@
         const modal = document.getElementById("pdf-modal");
         const pdfFrame = document.getElementById("pdf-frame");
         const closeModal = document.getElementsByClassName("close")[0];
-
+    
         // Add click event listeners to all PDF links
         const pdfLinks = document.querySelectorAll(".pdf-card a");
         pdfLinks.forEach(link => {
             link.addEventListener("click", function(event) {
                 event.preventDefault(); // Prevent the default anchor behavior
                 const pdfSrc = this.getAttribute("data-pdf"); // Get the PDF source from the data attribute
-                pdfFrame.src = pdfSrc; // Set the iframe source to the PDF
-                modal.style.display = "block"; // Show the modal
+    
+                // Check if the user is on an iPhone
+                if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                    window.open(pdfSrc, '_blank'); // Open PDF in a new tab for iPhone
+                } else {
+                    pdfFrame.src = pdfSrc; // Set the iframe source to the PDF
+                    modal.style.display = "block"; // Show the modal
+                }
             });
         });
-
+    
         // Close the modal when the close button is clicked
         closeModal.onclick = function() {
             modal.style.display = "none";
             pdfFrame.src = ""; // Reset the iframe source
         }
-
+    
         // Close the modal when clicking outside of the modal content
         window.onclick = function(event) {
             if (event.target === modal) {
@@ -69,5 +75,6 @@
             }
         }
     </script>
+    
 </body>
 </html>
